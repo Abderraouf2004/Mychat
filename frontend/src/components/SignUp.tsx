@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import ButtonSignup from './ButtonSignup';
 
 export const SignUp = () => {

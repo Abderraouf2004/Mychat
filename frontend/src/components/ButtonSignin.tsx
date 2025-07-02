@@ -1,5 +1,4 @@
 import axios from 'axios';
-import React from 'react'
 import { useNavigate } from 'react-router-dom';
 type user={
   email:string;
@@ -10,7 +9,7 @@ const ButtonSignin = ({ email,password}:user) => {
   const navigate=useNavigate();
   const signin=async()=>{
    try {
-     const res = await axios.post('http://localhost:8080/api/auth/signin', {
+      await axios.post('http://localhost:8080/api/auth/signin', {
         email,
         password
       }, {

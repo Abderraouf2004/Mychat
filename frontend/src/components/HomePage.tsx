@@ -22,7 +22,7 @@ const HomePage = () => {
 
   const rawUser = getCookie('user');
   const User = rawUser ? JSON.parse(rawUser) : null;
-  const [user, setuser] = useState(User);
+  const [user] = useState(User);
  
 type User = {
   id:string;
@@ -107,7 +107,7 @@ useEffect(()=>{
 // get chats
 
     const getchats= async()=>{
-    const res= await axios.get(`http://localhost:8080/api/chat/${user.id}`)
+     await axios.get(`http://localhost:8080/api/chat/${user.id}`)
     .then((response) => {
     console.log(response.data);
     setchats(response.data)
@@ -124,7 +124,7 @@ useEffect(()=>{
 // get users
 
  const getusers= async()=>{
-    const res= await axios.get('http://localhost:8080/api/users')
+     await axios.get('http://localhost:8080/api/users')
     .then((response) => {
     console.log(response.data);
     setusers(response.data)
@@ -175,7 +175,7 @@ useEffect(() => {
     console.warn("Receiver not found for chat:", chatId);
   }
 
-    const res= await axios.get(`http://localhost:8080/api/message/${chatId}`)
+     await axios.get(`http://localhost:8080/api/message/${chatId}`)
     .then((response) => {
     setmessages(response.data);
   })

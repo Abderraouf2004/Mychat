@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 import Chat from '../assets/Chat.jpg'
 export const LandingPage = () => (
  <div className="container mx-auto w-full bg-white">
