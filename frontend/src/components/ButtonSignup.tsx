@@ -31,7 +31,7 @@ const ButtonSignup = ({ name, email, password ,image}: UserProps) => {
 
       
       await axios.post(
-        'http://localhost:8080/api/auth/signup',
+        'https://mychat-1-4ru5.onrender.com/api/auth/signup',
         formData,
         {
           
