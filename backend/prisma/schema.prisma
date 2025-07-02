@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+  model User {
+    id        String   @id @default(cuid())
+    name      String
+    email     String   @unique
+    password  String
+    image     String?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    ownedChats Chat[]     @relation("AdminChat")
+    members    Member[]
+    MessagesSent      Message[]  @relation("Sender")
+    MessagesReceived  Message[]  @relation("Receiver")
+   
+  }
+
+  model Chat {
+    id        String   @id @default(cuid())
+    isGroup   Boolean  @default(false)
+    name      String?
+    image     String?
+    adminId   String?
+    createdAt DateTime @default(now())
+
+    members  Member[]
+    messages Message[]
+    admin    User?     @relation("AdminChat", fields: [adminId], references: [id])
+  }
+
+  model Member {
+    id        String   @id @default(cuid())
+    userId    String
+    chatId    String
+
+    user User @relation(fields: [userId], references: [id])
+    chat Chat @relation(fields: [chatId], references: [id])
+
+    @@unique([userId, chatId])
+  }
+
+ 
+
+  model Message {
+    id        String      @id @default(cuid())
+    chatId    String
+    senderId  String
+    content   String
+    createdAt DateTime    @default(now())
+    updatedAt DateTime    @updatedAt
+    receiverId String
+    receiver   User @relation("Receiver", fields: [receiverId], references: [id])
+    sender     User @relation("Sender", fields: [senderId], references: [id])
+    chat        Chat         @relation(fields: [chatId], references: [id])
+   
+  }
+
+
