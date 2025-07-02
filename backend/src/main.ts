@@ -15,7 +15,7 @@ const port = 8080;
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://mychat-rho-five.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   }
