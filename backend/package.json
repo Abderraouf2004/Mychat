@@ -6,11 +6,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec ts-node src/main.ts",
     "start": "node dist/main.js",
-    "build": "tsc",
     "db:migrate": "npx prisma migrate dev",
     "db:studio": "npx prisma studio",
     "db:reset": "npx prisma migrate reset",
     "db:seed": "node dist/seed/index.js",
+    "build": "tsc && cp -r src/generated dist/",
     "prepare": "npm run build"
   },
   "author": "",
