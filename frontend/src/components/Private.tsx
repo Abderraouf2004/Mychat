@@ -11,7 +11,7 @@ const Private = ({ children }: Props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/verify", {
+      .get("https://mychat-1-4ru5.onrender.com/api/verify", {
         withCredentials: true,
       })
       .then((res) => {
