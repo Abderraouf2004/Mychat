@@ -88,7 +88,10 @@ type message = {
   
 
 useEffect(()=>{
-    setsocket(io("http://localhost:8080"))
+      setsocket(io("https://mychat-1-4ru5.onrender.com", {
+        withCredentials: true,
+        transports: ['websocket'], 
+    }));
    
 },[])
 
@@ -107,7 +110,7 @@ useEffect(()=>{
 // get chats
 
     const getchats= async()=>{
-     await axios.get(`http://localhost:8080/api/chat/${user.id}`)
+     await axios.get(`https://mychat-1-4ru5.onrender.com/api/chat/${user.id}`)
     .then((response) => {
     console.log(response.data);
     setchats(response.data)
@@ -124,7 +127,7 @@ useEffect(()=>{
 // get users
 
  const getusers= async()=>{
-     await axios.get('http://localhost:8080/api/users')
+     await axios.get('https://mychat-1-4ru5.onrender.com/api/users')
     .then((response) => {
     console.log(response.data);
     setusers(response.data)
@@ -145,7 +148,7 @@ useEffect(() => {
 
   const interval = setInterval(async () => {
     try {
-      await axios.post('http://localhost:8080/api/auth/refresh-token', {}, { withCredentials: true });
+      await axios.post('https://mychat-1-4ru5.onrender.com/api/auth/refresh-token', {}, { withCredentials: true });
       console.log("Token refreshed automatically");
     } catch (err) {
       console.error("Failed to refresh token", err);
@@ -175,7 +178,7 @@ useEffect(() => {
     console.warn("Receiver not found for chat:", chatId);
   }
 
-     await axios.get(`http://localhost:8080/api/message/${chatId}`)
+     await axios.get(`https://mychat-1-4ru5.onrender.com/api/message/${chatId}`)
     .then((response) => {
     setmessages(response.data);
   })
@@ -212,7 +215,7 @@ const membersList = Array.from(new Set(
 ));
 
 
-           const res =    await axios.post('http://localhost:8080/api/chat/create',
+           const res =    await axios.post('https://mychat-1-4ru5.onrender.com/api/chat/create',
            {
             name:name,
             isGroup:isGroup,
