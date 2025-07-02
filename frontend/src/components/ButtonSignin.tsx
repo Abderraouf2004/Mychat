@@ -9,7 +9,7 @@ const ButtonSignin = ({ email,password}:user) => {
   const navigate=useNavigate();
   const signin=async()=>{
    try {
-      await axios.post('http://localhost:8080/api/auth/signin', {
+      await axios.post('https://mychat-1-4ru5.onrender.com/api/auth/signin', {
         email,
         password
       }, {
