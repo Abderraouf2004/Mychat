@@ -46,28 +46,28 @@ axios.defaults.withCredentials = true;
 //     setUser(null);
 //   }
 // }, []);
-const [user, setUser] = useState<User | null>(null);
+const [user] = useState<User | null>(User);
 
-useEffect(() => {
-  const cookieUser = document.cookie
-    .split('; ')
-    .find(c => c.startsWith('user='));
+// useEffect(() => {
+//   const cookieUser = document.cookie
+//     .split('; ')
+//     .find(c => c.startsWith('user='));
 
-  if (!cookieUser) {
-    console.warn("Cookie user introuvable !");
-    setUser(null);
-    return;
-  }
+//   if (!cookieUser) {
+//     console.warn("Cookie user introuvable !");
+//     setUser(null);
+//     return;
+//   }
 
-  try {
-    const value = decodeURIComponent(cookieUser.split('=')[1]);
-    const parsed = JSON.parse(value);
-    setUser(parsed);
-  } catch (err) {
-    console.error("Erreur parsing cookie user:", err);
-    setUser(null);
-  }
-}, []);
+//   try {
+//     const value = decodeURIComponent(cookieUser.split('=')[1]);
+//     const parsed = JSON.parse(value);
+//     setUser(parsed);
+//   } catch (err) {
+//     console.error("Erreur parsing cookie user:", err);
+//     setUser(null);
+//   }
+// }, []);
 
 
 
@@ -164,7 +164,7 @@ useEffect(()=>{
   })
 },[socket])
 
-console.log("User dans HomePage:", user);
+
 
 // // get chats
 
@@ -195,14 +195,15 @@ console.log("User dans HomePage:", user);
     console.error('Erreur lors de la requête GET', error);
   });
     }
-   useEffect(() => {
-  if (user) {
-    getchats();
+//    useEffect(() => {
+//   if (user) {
+//     getchats();
+//     getusers();
+//   }
+// }, [user]);
+
+ getchats();
     getusers();
-  }
-}, [user]);
-
-
 
 
 
@@ -226,11 +227,12 @@ useEffect(() => {
 }, []);
 
 
-useEffect(() => {
-  console.log("Cookie rawUser:", rawUser);
+// useEffect(() => {
+//   console.log("Cookie rawUser:", rawUser);
+//   console.log("User:", user);
+// }, []);
+ console.log("Cookie rawUser:", rawUser);
   console.log("User:", user);
-}, []);
-
 
 if (!user) {
   return (
