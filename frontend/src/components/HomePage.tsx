@@ -196,7 +196,7 @@ useEffect(() => {
                (chat) => chat.isGroup && chat.members.some((m) => m.userId === user.id) &&
                (Array.isArray(memberid)
                  ? memberid.every((id) => chat.members.some((m) => m.userId === id))
-                 : chat.members.some((m) => m.userId === memberid))
+                 : user && chat.members.some((m) => m.userId === user.id))
             )
             : chats.find(
              (chat) =>

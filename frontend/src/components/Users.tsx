@@ -1,5 +1,5 @@
 
-
+import Chat from '../assets/Chat.jpg'
 type User = {
   id:string;
   name: string;
@@ -19,9 +19,11 @@ const Users = ({users,User,createchat}:PropsUsers) => {
     <div className="max-h-[80vh] overflow-y-auto px-2">
            <ul>         
                 {
-                 users.filter((user) => user.id !== User.id).map((user) => ( 
+                 users.filter((user) => user && User && user.id !== User.id).map((user) => ( 
                 <li key={user.id} className="shadow- flex items-center w-11/12 cursor-pointer p-2 text-black " onClick={()=>createchat(user.id,user.name,user.image,false)}  >
-                <img src={`https://mychat-1-4ru5.onrender.com/uploads/${user.image}`}  className='w-14 h-14 rounded-full mr-3' />
+                <img src={user && user.image 
+    ? `https://mychat-1-4ru5.onrender.com/uploads/${user.image}`
+    : Chat}  className='w-14 h-14 rounded-full mr-3' />
                 {user.name}
                 </li>
                 ))}
