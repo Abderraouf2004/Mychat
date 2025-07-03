@@ -21,7 +21,7 @@ axios.defaults.withCredentials = true;
 
 
 
-  const rawUser = getCookie('token');
+  const rawUser = getCookie('user');
   const User = rawUser ? JSON.parse(rawUser) : null;
   // const [user] = useState(User);
   
