@@ -27,6 +27,13 @@ axios.defaults.withCredentials = true;
 //  const [user, setUser] = useState<User | null>(User);
 
 
+if (!user) {
+  return (
+    <div className="flex items-center justify-center h-screen text-black text-xl">
+      Please log in to access the chat.
+    </div>
+  );
+} 
 type User = {
   id:string;
   name: string;
@@ -115,6 +122,7 @@ console.log("User dans HomePage:", user);
 // // get chats
 
     const getchats= async()=>{
+        if (!user?.id) return;
      await axios.get(`https://mychat-1-4ru5.onrender.com/api/chat/${user.id}`)
     .then((response) => {
     console.log(response.data);
@@ -149,38 +157,7 @@ console.log("User dans HomePage:", user);
 
 
 
-//   const [loadingChats, setLoadingChats] = useState(true);
-//   const [loadingUsers, setLoadingUsers] = useState(true);
-// useEffect(() => {
-//     if (!user) return;
-    
-//     // Fetch chats
-//     const fetchChats = async () => {
-//       try {
-//         const response = await axios.get(`https://mychat-1-4ru5.onrender.com/api/chat/${user.id}`);
-//         setchats(response.data);
-//       } catch (error) {
-//         console.error('Error fetching chats', error);
-//       } finally {
-//         setLoadingChats(false);
-//       }
-//     };
 
-//     // Fetch users
-//     const fetchUsers = async () => {
-//       try {
-//         const response = await axios.get('https://mychat-1-4ru5.onrender.com/api/users');
-//         setusers(response.data);
-//       } catch (error) {
-//         console.error('Error fetching users', error);
-//       } finally {
-//         setLoadingUsers(false);
-//       }
-//     };
-
-//     fetchChats();
-//     fetchUsers();
-//   }, [user]);
 
 useEffect(() => {
   messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -202,13 +179,6 @@ useEffect(() => {
 }, []);
 
 
-if (!user) {
-  return (
-    <div className="flex items-center justify-center h-screen text-black text-xl">
-      Please log in to access the chat.
-    </div>
-  );
-}
 useEffect(() => {
   console.log("Cookie rawUser:", rawUser);
   console.log("User:", user);
@@ -321,7 +291,8 @@ const membersList = Array.from(new Set(
       <div className= 'fixed  flex bg-gradient-to-r from-gray-50 via-gray-200 to-gray-300 w-1/5 h-full' >    
         <div className=' w-2/3'>
           <div className='h-1/5  flex  items-center p-3'>
-          <img src={user?.image ? `https://mychat-1-4ru5.onrender.com/uploads/${user.image}` : Chat}  className='w-14 h-14 rounded-full' />
+          {user &&           <img src={user?.image ? `https://mychat-1-4ru5.onrender.com/uploads/${user.image}` : Chat}  className='w-14 h-14 rounded-full' />
+}
                <h1 className='text-2xl text-black ml-1'>{user.name}</h1>       
           </div>
           <div className="ml-5 mt-4 mb-4 text-xl font-bold text-black">
