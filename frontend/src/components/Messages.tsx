@@ -49,7 +49,12 @@ const Messages = ({messages,selectedChat,user,messageEndRef}:PropsMessages) => {
                </div>
             ):(  
                 <div key={message.id} className="flex mb-2    w-1/2">
-                  <img src={message.sender.image ? `https://mychat-1-4ru5.onrender.com/uploads/${message.sender.image}` : Chat}  className='w-14 h-14 rounded-full' />
+                  <img
+  src={message.sender?.image ? `https://mychat-1-4ru5.onrender.com/uploads/${message.sender.image}` : Chat}
+  className='w-14 h-14 rounded-full'
+  alt="Sender"
+/>
+
                   <p className="text-base bg-gray-200 ml-3 rounded-lg shadow-sm w-3/4 pl-3 pt-3 text-black">{message.content}</p>
                 </div>
                 

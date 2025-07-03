@@ -146,6 +146,8 @@ useEffect(()=>{
 //   });
 //     }
 //     getusers();
+console.log("User dans HomePage:", user);
+
 
   const [loadingChats, setLoadingChats] = useState(true);
   const [loadingUsers, setLoadingUsers] = useState(true);
@@ -212,7 +214,9 @@ useEffect(() => {
      setChatId(chatId)
      setimage(chatImage);
       const currentChat = chats.find((c) => c.id === chatId);
-  const receiver = currentChat?.members.find((m) => m.userId !== user.id)?.user;
+  // const receiver = currentChat?.members.find((m) => m.userId !== user.id)?.user;
+  const receiver = currentChat?.members.find((m) => m.userId !== user?.id)?.user;
+
   if (receiver?.id) {
     setreceiverId(receiver.id);
   }else {
