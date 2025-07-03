@@ -130,7 +130,7 @@ console.log("User dans HomePage:", user);
     console.error('Erreur lors de la requête GET', error);
   });
     }
-    // getchats();
+    getchats();
 
 
 
@@ -219,7 +219,7 @@ useEffect(() => {
   // const receiver = currentChat?.members.find((m) => m.userId !== user.id)?.user;
   const receiver = currentChat?.members.find((m) => m.userId !== user?.id)?.user;
 
-  if (receiver?.id) {
+  if (receiver && receiver.id) {
     setreceiverId(receiver.id);
   }else {
     console.warn("Receiver not found for chat:", chatId);
