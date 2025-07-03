@@ -320,7 +320,7 @@ const membersList = Array.from(new Set(
           <strong className='text-black ml-3'>{selectedChat}</strong>
         </div>}
           {/* messages */}
-          <Messages messages={messages} selectedChat={selectedChat} user={user} messageEndRef={messageEndRef}/>
+          {/* <Messages messages={messages} selectedChat={selectedChat} user={user} messageEndRef={messageEndRef}/> */}
        {selectedChat &&   
         <form  onSubmit={(e) => e.preventDefault()} className='fixed w-2/3  text-black flex justify-center items-center space-x-4 '>
           <input value={content} onChange={(e)=>{setcontent(e.target.value)}} type="text" className=' bg-white w-2/3 h-10 rounded-full outline-1 pl-5 ' placeholder='Type a message..' />
@@ -338,7 +338,7 @@ const membersList = Array.from(new Set(
            </div>
               {/*list of users */}
               {/* <Users users={users} createchat={createchat} User={User}/> */}
-              <Users users={users} createchat={createchat} User={user}/>
+              {/* <Users users={users} createchat={createchat} User={user}/> */}
    
       </div>
     
