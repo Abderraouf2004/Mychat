@@ -27,13 +27,7 @@ axios.defaults.withCredentials = true;
 //  const [user, setUser] = useState<User | null>(User);
 
 
-if (!user) {
-  return (
-    <div className="flex items-center justify-center h-screen text-black text-xl">
-      Please log in to access the chat.
-    </div>
-  );
-} 
+
 type User = {
   id:string;
   name: string;
@@ -185,7 +179,13 @@ useEffect(() => {
 }, []);
 
 
-
+if (!user) {
+  return (
+    <div className="flex items-center justify-center h-screen text-black text-xl">
+      Please log in to access the chat.
+    </div>
+  );
+} 
 
 
 
