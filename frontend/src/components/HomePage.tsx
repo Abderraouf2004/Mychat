@@ -23,8 +23,30 @@ axios.defaults.withCredentials = true;
 
   const rawUser = getCookie('user');
   const User = rawUser ? JSON.parse(rawUser) : null;
-  const [user] = useState(User);
+  // const [user] = useState(User);
+  
 //  const [user, setUser] = useState<User | null>(User);
+const [user, setUser] = useState<User | null>(null);
+
+useEffect(() => {
+  const rawUser = document.cookie
+    .split('; ')
+    .find(row => row.startsWith('user='))
+    ?.split('=')[1];
+
+  if (rawUser) {
+    try {
+      const parsed = JSON.parse(decodeURIComponent(rawUser));
+      setUser(parsed);
+    } catch (err) {
+      console.error('Erreur parsing cookie user:', err);
+      setUser(null);
+    }
+  } else {
+    setUser(null);
+  }
+}, []);
+
 
 
 
