@@ -43,17 +43,22 @@ const Messages = ({messages,selectedChat,user,messageEndRef}:PropsMessages) => {
               <div className="text-center text-gray-400">No messages</div>
               ) :
             ( messages.map((message) => (   
-             message.sender.name === user.name ?(
+             message.sender?.name === user.name ?(
                <div key={message.id} className="mb-2 p-3 bg-purple-800 rounded-lg shadow-sm w-1/2 ml-96 ">
                   <p className="text-base">{message.content}</p>
                </div>
             ):(  
                 <div key={message.id} className="flex mb-2    w-1/2">
                   <img
-  src={message.sender?.image ? `https://mychat-1-4ru5.onrender.com/uploads/${message.sender.image}` : Chat}
-  className='w-14 h-14 rounded-full'
+  src={
+    message.sender && message.sender.image
+      ? `https://mychat-1-4ru5.onrender.com/uploads/${message.sender.image}`
+      : Chat
+  }
+  className="w-14 h-14 rounded-full"
   alt="Sender"
 />
+
 
                   <p className="text-base bg-gray-200 ml-3 rounded-lg shadow-sm w-3/4 pl-3 pt-3 text-black">{message.content}</p>
                 </div>
