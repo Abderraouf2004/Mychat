@@ -59,7 +59,7 @@ const Group = ({ isOpen, onClose,users,createchat}: GroupProps) => {
                   checked={selectedMembers.includes(user.id)}
                   onChange={() => selecteMember(user.id)}
                 />
-                 <img src={`http://localhost:8080/uploads/${user.image}`}  className='w-14 h-14 rounded-full mr-3' />
+                 <img src={`https://mychat-1-4ru5.onrender.com/uploads/${user.image}`}  className='w-14 h-14 rounded-full mr-3' />
                 {user.name}
               </label>
             ))}
