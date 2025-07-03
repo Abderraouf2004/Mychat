@@ -46,7 +46,31 @@ axios.defaults.withCredentials = true;
 //     setUser(null);
 //   }
 // }, []);
-const [user] = useState<User | null>(User);
+// const [user] = useState<User | null>(User);
+const [user, setUser] = useState<User | null>(null);
+useEffect(() => {
+    const getCookieUser = () => {
+      const cookieString = document.cookie;
+      const cookies = cookieString.split('; ');
+      
+      for (const cookie of cookies) {
+        if (cookie.startsWith('user=')) {
+          const userValue = cookie.split('=')[1];
+          try {
+            return JSON.parse(decodeURIComponent(userValue));
+          } catch (error) {
+            console.error('Error parsing user cookie:', error);
+            return null;
+          }
+        }
+      }
+      return null;
+    };
+
+    const userData = getCookieUser();
+    setUser(userData);
+    
+  }, []);
 
 // useEffect(() => {
 //   const cookieUser = document.cookie
