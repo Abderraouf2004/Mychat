@@ -133,7 +133,16 @@ type message = {
   const [typechats,settypechats]=useState<string>('private');
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  
+  useEffect(() => {
+  axios.get('https://mychat-1-4ru5.onrender.com/api/auth/verify-token', { withCredentials: true })
+    .then(res => {
+      console.log("✅ Token verified:", res.data);
+    })
+    .catch(err => {
+      console.error("❌ Token NOT verified:", err);
+    });
+}, []);
+
 
 useEffect(()=>{
       setsocket(io("https://mychat-1-4ru5.onrender.com", {
