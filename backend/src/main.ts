@@ -33,18 +33,7 @@ io.on("connection", (socket) => {
     socket.join(userId);
   });
 
-  // socket.on("sendmessage",({chatId,senderId,content,receiverId}) => {
-  //   const receiver  = Users.find((u) => u.userId === receiverId);
-  //   if (receiver) {
-  //     io.to(receiver.socketId).emit('getmessage',{
-  //       chatId,
-  //       senderId,
-  //       content,
-  //       receiverId
-  //     })
-  //   }
-  
-  // });
+
 
 
   socket.on("sendmessage", async ({ chatId, senderId, content, receiverId }) => {
@@ -97,11 +86,22 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 
+// app.use(cors({
+//   origin: 'https://mychat-rho-five.vercel.app', 
+//   credentials: true, 
+// }));
+
+// app.use(express.json());
+// app.use(cookieParser());
+// app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
+// ✅ CORS EN PREMIER
 app.use(cors({
-  origin: 'https://mychat-rho-five.vercel.app', 
-  credentials: true, 
+  origin: 'https://mychat-rho-five.vercel.app',
+  credentials: true,
 }));
 
+// ✅ Ensuite express middlewares
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
