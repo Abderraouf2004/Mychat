@@ -195,15 +195,15 @@ useEffect(()=>{
     console.error('Erreur lors de la requête GET', error);
   });
     }
-//    useEffect(() => {
-//   if (user) {
-//     getchats();
-//     getusers();
-//   }
-// }, [user]);
-
- getchats();
+   useEffect(() => {
+  if (user) {
+    getchats();
     getusers();
+  }
+}, [user]);
+
+//  getchats();
+//     getusers();
 
 
 
