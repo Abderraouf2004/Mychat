@@ -290,11 +290,11 @@ const membersList = Array.from(new Set(
     <div  className="container mx-auto flex h-full  bg-white text-white ">
       <div className= 'fixed  flex bg-gradient-to-r from-gray-50 via-gray-200 to-gray-300 w-1/5 h-full' >    
         <div className=' w-2/3'>
-          {/* <div className='h-1/5  flex  items-center p-3'>
+          <div className='h-1/5  flex  items-center p-3'>
           {user && <img src={user?.image ? `https://mychat-1-4ru5.onrender.com/uploads/${user.image}` : Chat}  className='w-14 h-14 rounded-full' />
 }
               {user && <h1 className='text-2xl text-black ml-1'>{user.name}</h1> }      
-          </div> */}
+          </div>
           <div className="ml-5 mt-4 mb-4 text-xl font-bold text-black">
               <ul className="hidden md:flex space-x-6 font-medium">
                <li className="hover:text-gray-600  cursor-pointer" onClick={()=>affichetypechats('private')}>Chats</li>
@@ -306,21 +306,21 @@ const membersList = Array.from(new Set(
       <button onClick={() => setIsModalOpen(true)} className='font-semibold ml-2  py-1 rounded hover:shadow-2xl transition bg-black'>
         Create a new Group 
       </button>
-      {/* <Group isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}  users={users} createchat={createchat}/> */}
+      <Group isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}  users={users} createchat={createchat}/>
     </div>
 
           }
-          {/* <Chats chats={chats} user={user} getmessages={getmessages} typechats={typechats}/>          */}
+          <Chats chats={chats} user={user} getmessages={getmessages} typechats={typechats}/>         
         </div>
       </div>
        {/* chat selected*/}
       <div className="container   ml-72 w-2/3 ">
-        {/* {selectedChat &&  <div className='fixed w-1/4  h-1/12 bg-white flex  items-center '>
+        {selectedChat &&  <div className='fixed w-1/4  h-1/12 bg-white flex  items-center '>
           <img src={image ? `https://mychat-1-4ru5.onrender.com/uploads/${image}` : Chat}  className='w-14 h-14 rounded-full' />
           <strong className='text-black ml-3'>{selectedChat}</strong>
-        </div>} */}
+        </div>}
           {/* messages */}
-          {/* <Messages messages={messages} selectedChat={selectedChat} user={user} messageEndRef={messageEndRef}/> */}
+          <Messages messages={messages} selectedChat={selectedChat} user={user} messageEndRef={messageEndRef}/>
        {selectedChat &&   
         <form  onSubmit={(e) => e.preventDefault()} className='fixed w-2/3  text-black flex justify-center items-center space-x-4 '>
           <input value={content} onChange={(e)=>{setcontent(e.target.value)}} type="text" className=' bg-white w-2/3 h-10 rounded-full outline-1 pl-5 ' placeholder='Type a message..' />
@@ -338,7 +338,7 @@ const membersList = Array.from(new Set(
            </div>
               {/*list of users */}
               {/* <Users users={users} createchat={createchat} User={User}/> */}
-              {/* <Users users={users} createchat={createchat} User={user}/> */}
+              <Users users={users} createchat={createchat} User={user}/>
    
       </div>
     
