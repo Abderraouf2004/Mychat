@@ -30,7 +30,7 @@ interface ChatsProps {
   typechats: string;
 }
 
-const Chats = ({ chats, user, getmessages, typechats }: ChatsProps) => {
+const Chats = ({ chats,  getmessages, typechats }: ChatsProps) => {
   const filteredChats = chats.filter((chat) =>
     typechats === 'group' ? chat.isGroup : !chat.isGroup
   );
