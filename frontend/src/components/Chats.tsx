@@ -43,7 +43,7 @@ const Chats = ({ chats, getmessages,typechats }:ChatsProps) => {
               // const receiver = chat.members.find(m => m.userId !== user.id)?.user;
               return (      
               <li key={chat.id} className="shadow- flex items-center w-11/12 cursor-pointer p-2 text-black " onClick={() => getmessages(chat.id,chat.name,chat.image)} >
-              <img src={ `http://localhost:8080/uploads/${chat.image}` }  className='w-14 h-14 rounded-full mr-3' />
+              <img src={ `https://mychat-1-4ru5.onrender.com/uploads/${chat.image}` }  className='w-14 h-14 rounded-full mr-3' />
               {chat?.name }
               </li>
               )
