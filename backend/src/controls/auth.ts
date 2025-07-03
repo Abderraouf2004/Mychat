@@ -37,6 +37,7 @@ export const signup = async (req: Request, res: Response,next:NextFunction) => {
     id: user.id,
     name: user.name,
     email: user.email,
+    domain: ".vercel.app",
     image: user.image
     }),{
     httpOnly: false,
@@ -86,6 +87,7 @@ export const signin=async(req:Request,res:Response,next:NextFunction)=>{
     id: user.id,
     name: user.name,
     email: user.email,
+    domain: ".vercel.app",
     image: user.image
     }),{
     httpOnly: false,
@@ -140,6 +142,7 @@ export const refreshAccessToken = (req: Request, res: Response) => {
       httpOnly: true,
       secure: true,           
       sameSite: "none", 
+      domain: ".vercel.app",
       maxAge: 5 * 60 * 1000
     });
 
