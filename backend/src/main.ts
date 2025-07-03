@@ -77,7 +77,6 @@ io.on("connection", (socket) => {
   });
 });
 
-// const uploadDir = path.join(__dirname, 'uploads');
 const uploadDir = path.join(__dirname, '..', 'uploads');
 
 
@@ -85,23 +84,11 @@ if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
 
-
-// app.use(cors({
-//   origin: 'https://mychat-rho-five.vercel.app', 
-//   credentials: true, 
-// }));
-
-// app.use(express.json());
-// app.use(cookieParser());
-// app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
-
-// ✅ CORS EN PREMIER
 app.use(cors({
   origin: 'https://mychat-rho-five.vercel.app',
   credentials: true,
 }));
 
-// ✅ Ensuite express middlewares
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
@@ -113,9 +100,6 @@ app.get('/', (req, res) => {
 
 app.use('/api',router);
 
-// app.listen(port, () => {
-//     console.log(`http://localhost:${port}`);
-// });
 httpServer.listen(port, () => {
   console.log(`http://localhost:${port}`);
 });
