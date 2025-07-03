@@ -306,11 +306,11 @@ const membersList = Array.from(new Set(
       <button onClick={() => setIsModalOpen(true)} className='font-semibold ml-2  py-1 rounded hover:shadow-2xl transition bg-black'>
         Create a new Group 
       </button>
-      <Group isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}  users={users} createchat={createchat}/>
+      {/* <Group isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}  users={users} createchat={createchat}/> */}
     </div>
 
           }
-          <Chats chats={chats} user={user} getmessages={getmessages} typechats={typechats}/>         
+          {/* <Chats chats={chats} user={user} getmessages={getmessages} typechats={typechats}/>          */}
         </div>
       </div>
        {/* chat selected*/}
