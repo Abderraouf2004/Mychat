@@ -25,13 +25,7 @@ axios.defaults.withCredentials = true;
   const User = rawUser ? JSON.parse(rawUser) : null;
   const [user] = useState(User);
 //  const [user, setUser] = useState<User | null>(User);
-if (!user) {
-  return (
-    <div className="flex items-center justify-center h-screen text-black text-xl">
-      Please log in to access the chat.
-    </div>
-  );
-}
+
 
 type User = {
   id:string;
@@ -130,7 +124,6 @@ console.log("User dans HomePage:", user);
     console.error('Erreur lors de la requête GET', error);
   });
     }
-    getchats();
 
 
 
@@ -147,7 +140,12 @@ console.log("User dans HomePage:", user);
     console.error('Erreur lors de la requête GET', error);
   });
     }
+   useEffect(() => {
+  if (user) {
+    getchats();
     getusers();
+  }
+}, [user]);
 
 
 
@@ -204,6 +202,17 @@ useEffect(() => {
 }, []);
 
 
+if (!user) {
+  return (
+    <div className="flex items-center justify-center h-screen text-black text-xl">
+      Please log in to access the chat.
+    </div>
+  );
+}
+useEffect(() => {
+  console.log("Cookie rawUser:", rawUser);
+  console.log("User:", user);
+}, []);
 
 
 
