@@ -26,23 +26,45 @@ axios.defaults.withCredentials = true;
   // const [user] = useState(User);
   
 //  const [user, setUser] = useState<User | null>(User);
+// const [user, setUser] = useState<User | null>(null);
+
+// useEffect(() => {
+//   const rawUser = document.cookie
+//     .split('; ')
+//     .find(row => row.startsWith('user='))
+//     ?.split('=')[1];
+
+//   if (rawUser) {
+//     try {
+//       const parsed = JSON.parse(decodeURIComponent(rawUser));
+//       setUser(parsed);
+//     } catch (err) {
+//       console.error('Erreur parsing cookie user:', err);
+//       setUser(null);
+//     }
+//   } else {
+//     setUser(null);
+//   }
+// }, []);
 const [user, setUser] = useState<User | null>(null);
 
 useEffect(() => {
-  const rawUser = document.cookie
+  const cookieUser = document.cookie
     .split('; ')
-    .find(row => row.startsWith('user='))
-    ?.split('=')[1];
+    .find(c => c.startsWith('user='));
 
-  if (rawUser) {
-    try {
-      const parsed = JSON.parse(decodeURIComponent(rawUser));
-      setUser(parsed);
-    } catch (err) {
-      console.error('Erreur parsing cookie user:', err);
-      setUser(null);
-    }
-  } else {
+  if (!cookieUser) {
+    console.warn("Cookie user introuvable !");
+    setUser(null);
+    return;
+  }
+
+  try {
+    const value = decodeURIComponent(cookieUser.split('=')[1]);
+    const parsed = JSON.parse(value);
+    setUser(parsed);
+  } catch (err) {
+    console.error("Erreur parsing cookie user:", err);
     setUser(null);
   }
 }, []);
