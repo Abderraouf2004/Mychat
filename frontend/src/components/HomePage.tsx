@@ -134,7 +134,7 @@ type message = {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   useEffect(() => {
-  axios.get('https://mychat-1-4ru5.onrender.com/api/auth/verify-token', { withCredentials: true })
+  axios.get('https://mychat-1-4ru5.onrender.com/api/verify', { withCredentials: true })
     .then(res => {
       console.log("✅ Token verified:", res.data);
     })
