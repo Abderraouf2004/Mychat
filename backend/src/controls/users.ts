@@ -13,8 +13,11 @@ try {
 
 export const deleteusers=async(req:Request,res:Response)=>{
 try {
-    const users=await prismaclient.user.deleteMany()
-    res.send(users)
+    const result=await prismaclient.user.deleteMany()
+     res.status(200).json({
+      message: "All users deleted successfully",
+      deletedCount: result.count,
+    });
 } catch (error) {
         console.error("Error get all users:", error);
     res.status(500).json({ error: "Failed to get users" });
