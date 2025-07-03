@@ -29,7 +29,7 @@ export const signup = async (req: Request, res: Response,next:NextFunction) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: true,           
-      sameSite: "None", 
+      sameSite: "none", 
       maxAge: 15 * 60 * 1000, 
     })
     .cookie('user',JSON.stringify({
@@ -39,8 +39,8 @@ export const signup = async (req: Request, res: Response,next:NextFunction) => {
     image: user.image
     }),{
     httpOnly: false,
-    secure: true,        
-  sameSite: "None", 
+     secure: true,          
+    sameSite: "none", 
     maxAge: 24 * 60 * 60 * 1000,
     })
     .status(201)
@@ -75,8 +75,8 @@ export const signin=async(req:Request,res:Response,next:NextFunction)=>{
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: true,          
-  sameSite: "None", 
+      secure: true,           
+      sameSite: "none", 
       maxAge: 15 * 60 * 1000, 
     })
     .cookie('user',JSON.stringify({
@@ -86,8 +86,8 @@ export const signin=async(req:Request,res:Response,next:NextFunction)=>{
     image: user.image
     }),{
     httpOnly: false,
-    secure: false,
-    sameSite: 'lax',
+    secure: true,           
+      sameSite: "none", 
     maxAge: 24 * 60 * 60 * 1000,
     })
     .status(201)
@@ -134,10 +134,9 @@ export const refreshAccessToken = (req: Request, res: Response) => {
 
     res.cookie('token', newToken, {
       httpOnly: true,
-      secure: true,         
-      sameSite: "None", 
+      secure: true,           
+      sameSite: "none", 
       maxAge: 5 * 60 * 1000
-      
     });
 
     res.status(200).json({ message: 'Token refreshed' });
