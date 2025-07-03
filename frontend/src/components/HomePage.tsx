@@ -116,6 +116,8 @@ useEffect(()=>{
   })
 },[socket])
 
+console.log("User dans HomePage:", user);
+
 // // get chats
 
     const getchats= async()=>{
@@ -128,7 +130,7 @@ useEffect(()=>{
     console.error('Erreur lors de la requête GET', error);
   });
     }
-    getchats();
+    // getchats();
 
 
 
@@ -303,7 +305,7 @@ const membersList = Array.from(new Set(
         settypechats(typechat)
    }
   
- console.log("User dans HomePage:", user);
+ 
 
   return (
     <div  className="container mx-auto flex h-full  bg-white text-white ">
