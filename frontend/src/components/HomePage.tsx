@@ -351,7 +351,9 @@ const membersList = Array.from(new Set(
            <span>Users</span>
            </div>
               {/*list of users */}
-              <Users users={users} createchat={createchat} User={User}/>   
+              {/* <Users users={users} createchat={createchat} User={User}/> */}
+              <Users users={users} createchat={createchat} User={user}/>
+   
       </div>
     
     </div>

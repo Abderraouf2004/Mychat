@@ -11,15 +11,16 @@ type User = {
 type PropsUsers = {
   users: User[];
   createchat: (memberid: string, membername: string | null, memberimage: string, isGroup: boolean) => void;
-  User: User;
+  User: User | null;
 };
 
 const Users = ({ users, User, createchat }: PropsUsers) => {
   return (
     <div className="max-h-[80vh] overflow-y-auto px-2">
       <ul>
-        {users
-          .filter((user) => user && User && user.id !== User.id)
+        {User &&
+        users
+       .filter((user) => user.id !== User.id)
           .map((user) => {
             const imageUrl = user.image
               ? `https://mychat-1-4ru5.onrender.com/uploads/${user.image}`
