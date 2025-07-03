@@ -116,37 +116,69 @@ useEffect(()=>{
   })
 },[socket])
 
-// get chats
+// // get chats
 
-    const getchats= async()=>{
-     await axios.get(`https://mychat-1-4ru5.onrender.com/api/chat/${user.id}`)
-    .then((response) => {
-    console.log(response.data);
-    setchats(response.data)
-  })
-  .catch((error) => {
-    console.error('Erreur lors de la requête GET', error);
-  });
-    }
-    getchats();
-
-
+//     const getchats= async()=>{
+//      await axios.get(`https://mychat-1-4ru5.onrender.com/api/chat/${user.id}`)
+//     .then((response) => {
+//     console.log(response.data);
+//     setchats(response.data)
+//   })
+//   .catch((error) => {
+//     console.error('Erreur lors de la requête GET', error);
+//   });
+//     }
+//     getchats();
 
 
-// get users
 
- const getusers= async()=>{
-     await axios.get('https://mychat-1-4ru5.onrender.com/api/users')
-    .then((response) => {
-    console.log(response.data);
-    setusers(response.data)
-  })
-  .catch((error) => {
-    console.error('Erreur lors de la requête GET', error);
-  });
-    }
-    getusers();
 
+// // get users
+
+//  const getusers= async()=>{
+//      await axios.get('https://mychat-1-4ru5.onrender.com/api/users')
+//     .then((response) => {
+//     console.log(response.data);
+//     setusers(response.data)
+//   })
+//   .catch((error) => {
+//     console.error('Erreur lors de la requête GET', error);
+//   });
+//     }
+//     getusers();
+
+  const [loadingChats, setLoadingChats] = useState(true);
+  const [loadingUsers, setLoadingUsers] = useState(true);
+useEffect(() => {
+    if (!user) return;
+    
+    // Fetch chats
+    const fetchChats = async () => {
+      try {
+        const response = await axios.get(`https://mychat-1-4ru5.onrender.com/api/chat/${user.id}`);
+        setchats(response.data);
+      } catch (error) {
+        console.error('Error fetching chats', error);
+      } finally {
+        setLoadingChats(false);
+      }
+    };
+
+    // Fetch users
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get('https://mychat-1-4ru5.onrender.com/api/users');
+        setusers(response.data);
+      } catch (error) {
+        console.error('Error fetching users', error);
+      } finally {
+        setLoadingUsers(false);
+      }
+    };
+
+    fetchChats();
+    fetchUsers();
+  }, [user]);
 
 useEffect(() => {
   messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
