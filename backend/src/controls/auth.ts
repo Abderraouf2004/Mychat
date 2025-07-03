@@ -151,3 +151,23 @@ export const refreshAccessToken = (req: Request, res: Response) => {
     return res.status(403).json({ message: 'Invalid token' });
   }
 };
+
+
+
+// Add to your auth controller
+export const getCurrentUser = async (req: Request, res: Response) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) return res.status(401).json(null);
+
+    const decoded = jwt.verify(token, JWT_SECRET) as { userId: string };
+    const user = await prismaclient.user.findUnique({
+      where: { id: decoded.userId },
+      select: { id: true, name: true, email: true, image: true }
+    });
+
+    res.json(user);
+  } catch (err) {
+    res.status(401).json(null);
+  }
+};
