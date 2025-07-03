@@ -146,7 +146,7 @@ useEffect(()=>{
   });
     }
     getusers();
-console.log("User dans HomePage:", user);
+
 
 
 //   const [loadingChats, setLoadingChats] = useState(true);
@@ -303,7 +303,7 @@ const membersList = Array.from(new Set(
         settypechats(typechat)
    }
   
-
+ console.log("User dans HomePage:", user);
 
   return (
     <div  className="container mx-auto flex h-full  bg-white text-white ">
