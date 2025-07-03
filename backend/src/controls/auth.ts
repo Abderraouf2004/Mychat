@@ -33,13 +33,12 @@ export const signup = async (req: Request, res: Response,next:NextFunction) => {
       
       maxAge: 15 * 60 * 1000, 
     })
-    .cookie('user',JSON.stringify({
-    id: user.id,
-    name: user.name,
-    email: user.email,
-   
-    image: user.image
-    }),{
+    .cookie('user', encodeURIComponent(JSON.stringify({
+  id: user.id,
+  name: user.name,
+  email: user.email,
+  image: user.image
+})),{
     httpOnly: false,
      secure: true,          
     sameSite: "none", 
@@ -83,13 +82,12 @@ export const signin=async(req:Request,res:Response,next:NextFunction)=>{
        
       maxAge: 15 * 60 * 1000, 
     })
-    .cookie('user',JSON.stringify({
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    
-    image: user.image
-    }),{
+    .cookie('user', encodeURIComponent(JSON.stringify({
+  id: user.id,
+  name: user.name,
+  email: user.email,
+  image: user.image
+})),{
     httpOnly: false,
     secure: true,           
       sameSite: "none", 
