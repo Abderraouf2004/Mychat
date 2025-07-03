@@ -30,6 +30,7 @@ export const signup = async (req: Request, res: Response,next:NextFunction) => {
       httpOnly: true,
       secure: true,           
       sameSite: "none", 
+       domain: ".vercel.app",
       maxAge: 15 * 60 * 1000, 
     })
     .cookie('user',JSON.stringify({
@@ -41,6 +42,7 @@ export const signup = async (req: Request, res: Response,next:NextFunction) => {
     httpOnly: false,
      secure: true,          
     sameSite: "none", 
+     domain: ".vercel.app",
     maxAge: 24 * 60 * 60 * 1000,
     })
     .status(201)
@@ -76,7 +78,8 @@ export const signin=async(req:Request,res:Response,next:NextFunction)=>{
     res.cookie('token', token, {
       httpOnly: true,
       secure: true,           
-      sameSite: "none", 
+      sameSite: "none",
+        domain: ".vercel.app", 
       maxAge: 15 * 60 * 1000, 
     })
     .cookie('user',JSON.stringify({
@@ -88,6 +91,7 @@ export const signin=async(req:Request,res:Response,next:NextFunction)=>{
     httpOnly: false,
     secure: true,           
       sameSite: "none", 
+        domain: ".vercel.app",
     maxAge: 24 * 60 * 60 * 1000,
     })
     .status(201)
