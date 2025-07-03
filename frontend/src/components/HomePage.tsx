@@ -93,7 +93,7 @@ type message = {
   const messageEndRef = useRef<HTMLDivElement | null>(null);
   const [typechats,settypechats]=useState<string>('private');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log(messages)
+  
   
 
 useEffect(()=>{
