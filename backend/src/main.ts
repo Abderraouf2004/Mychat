@@ -84,10 +84,17 @@ if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
 
+// app.use(cors({
+//   origin: 'https://mychat-rho-five.vercel.app',
+//   credentials: true,
+// }));
 app.use(cors({
   origin: 'https://mychat-rho-five.vercel.app',
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
 
 app.use(express.json());
 app.use(cookieParser());
