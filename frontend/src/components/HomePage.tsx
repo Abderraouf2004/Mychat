@@ -46,59 +46,7 @@ axios.defaults.withCredentials = true;
 //     setUser(null);
 //   }
 // }, []);
-// const [user] = useState<User | null>(User);
-const [user, setUser] = useState<User | null>(null);
- const [loading, setLoading] = useState(true);
-// useEffect(() => {
-//     const getCookieUser = () => {
-//       const cookieString = document.cookie;
-//       const cookies = cookieString.split('; ');
-      
-//       for (const cookie of cookies) {
-//         if (cookie.startsWith('user=')) {
-//           const userValue = cookie.split('=')[1];
-//           try {
-//             return JSON.parse(decodeURIComponent(userValue));
-//           } catch (error) {
-//             console.error('Error parsing user cookie:', error);
-//             return null;
-//           }
-//         }
-//       }
-//       return null;
-//     };
-
-//     const userData = getCookieUser();
-//     setUser(userData);
-//     setLoading(false);
-//   }, []);
- useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        // Verify token first
-        await axios.get('https://mychat-1-4ru5.onrender.com/api/verify', { 
-          withCredentials: true 
-        });
-        
-        // Then get user data from API
-        const userRes = await axios.get('https://mychat-1-4ru5.onrender.com/api/user', {
-          withCredentials: true
-        });
-        
-        setUser(userRes.data);
-      } catch (err) {
-        console.error("Authentication error:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
-   if (loading) {
-    return <div className="flex items-center justify-center h-screen text-black text-xl">Loading...</div>;
-  }
+const [user] = useState<User | null>(User);
 
 // useEffect(() => {
 //   const cookieUser = document.cookie
@@ -247,15 +195,15 @@ useEffect(()=>{
     console.error('Erreur lors de la requête GET', error);
   });
     }
-   useEffect(() => {
-  if (user) {
-    getchats();
-    getusers();
-  }
-}, [user]);
-
-//  getchats();
+//    useEffect(() => {
+//   if (user) {
+//     getchats();
 //     getusers();
+//   }
+// }, [user]);
+
+ getchats();
+    getusers();
 
 
 
