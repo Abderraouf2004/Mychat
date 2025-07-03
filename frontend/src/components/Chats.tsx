@@ -38,7 +38,7 @@ const Chats = ({ chats, user, getmessages, typechats }: ChatsProps) => {
   return (
     <div className="max-h-[80vh] overflow-y-auto px-2">
       <ul>
-        {filteredChats.map((chat) => {
+        {filteredChats && filteredChats.map((chat) => {
           const imageUrl = chat.image
             ? `https://mychat-1-4ru5.onrender.com/uploads/${chat.image}`
             : Chat;

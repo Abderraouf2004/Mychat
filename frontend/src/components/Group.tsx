@@ -1,4 +1,5 @@
 import  { useState } from 'react'
+import Chat from '../assets/Chat.jpg';
 
 type User = {
   id:string;
@@ -59,7 +60,19 @@ const Group = ({ isOpen, onClose,users,createchat}: GroupProps) => {
                   checked={selectedMembers.includes(user.id)}
                   onChange={() => selecteMember(user.id)}
                 />
-                 <img src={`https://mychat-1-4ru5.onrender.com/uploads/${user.image}`}  className='w-14 h-14 rounded-full mr-3' />
+                <img
+  src={
+    user.image
+      ? `https://mychat-1-4ru5.onrender.com/uploads/${user.image}`
+      : Chat
+  }
+  onError={(e) => {
+    (e.target as HTMLImageElement).src = Chat;
+  }}
+  className='w-14 h-14 rounded-full mr-3'
+  alt="User"
+/>
+
                 {user.name}
               </label>
             ))}

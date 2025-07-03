@@ -291,9 +291,9 @@ const membersList = Array.from(new Set(
       <div className= 'fixed  flex bg-gradient-to-r from-gray-50 via-gray-200 to-gray-300 w-1/5 h-full' >    
         <div className=' w-2/3'>
           <div className='h-1/5  flex  items-center p-3'>
-          {user &&           <img src={user?.image ? `https://mychat-1-4ru5.onrender.com/uploads/${user.image}` : Chat}  className='w-14 h-14 rounded-full' />
+          {user && <img src={user?.image ? `https://mychat-1-4ru5.onrender.com/uploads/${user.image}` : Chat}  className='w-14 h-14 rounded-full' />
 }
-               <h1 className='text-2xl text-black ml-1'>{user.name}</h1>       
+              {user && <h1 className='text-2xl text-black ml-1'>{user.name}</h1> }      
           </div>
           <div className="ml-5 mt-4 mb-4 text-xl font-bold text-black">
               <ul className="hidden md:flex space-x-6 font-medium">

@@ -42,7 +42,7 @@ const Messages = ({messages,selectedChat,user,messageEndRef}:PropsMessages) => {
              {(!Array.isArray(messages) || messages.length === 0)  && selectedChat  ? (
               <div className="text-center text-gray-400">No messages</div>
               ) :
-            ( messages.map((message) => (   
+            (messages && messages.map((message) => (   
              message.sender?.name === user.name ?(
                <div key={message.id} className="mb-2 p-3 bg-purple-800 rounded-lg shadow-sm w-1/2 ml-96 ">
                   <p className="text-base">{message.content}</p>
