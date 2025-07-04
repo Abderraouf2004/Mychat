@@ -114,7 +114,7 @@ useEffect(() => {
   .then(res => {
     console.log("✅ Token verified:", res.data.user);
     const userId = res.data.user.userId;
-    axios.get(`https://mychat-1-4ru5.onrender.com/api/${userId}`, {
+    axios.get(`https://mychat-1-4ru5.onrender.com/api/users/${userId}`, {
       withCredentials: true
     })
     .then(userRes => {
