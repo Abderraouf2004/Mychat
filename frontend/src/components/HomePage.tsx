@@ -92,6 +92,8 @@ type message = {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [user,setUser] = useState<User | null>(null);
+    const [userid,setuserid] = useState<string>('');
+
 
 
 
@@ -104,6 +106,7 @@ type message = {
   axios.get('https://mychat-1-4ru5.onrender.com/api/verify', { withCredentials: true })
     .then(res => {
       console.log("✅ Token verified:", res.data.user);
+      setuserid(res.data.user.userId)
     })
     .catch(err => {
       console.error("❌ Token NOT verified:", err);
@@ -111,15 +114,17 @@ type message = {
 }, []);
 
 useEffect(() => {
-  axios.get("https://mychat-1-4ru5.onrender.com/api/me", { withCredentials: true })
-    .then(res => {
-      console.log("User récupéré :", res.data.user);
-      setUser(res.data.user);
-    })
-    .catch(err => {
-      console.error("Erreur récupération user:", err);
-    });
-}, []);
+  if (userid) {
+    axios.get(`https://mychat-1-4ru5.onrender.com/api/${userid}`, { withCredentials: true })
+      .then(res => {
+        console.log("User récupéré :", res.data.user);
+        setUser(res.data.user);
+      })
+      .catch(err => {
+        console.error("Erreur récupération user:", err);
+      });
+  }
+}, [userid]);
 
 
 
