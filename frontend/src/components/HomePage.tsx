@@ -94,18 +94,48 @@ type message = {
   
 
 
+// useEffect(() => {
+//   axios.get("https://mychat-1-4ru5.onrender.com/api/verify", {
+//     withCredentials: true
+//   })
+//   .then(res => {
+//     console.log("✅ Token verified:", res.data.user);
+//     setuser(res.data.user); 
+//   })
+//   .catch(err => {
+//     console.error("❌ Verification failed:", err);
+//   });
+// }, []);
+
 useEffect(() => {
   axios.get("https://mychat-1-4ru5.onrender.com/api/verify", {
     withCredentials: true
   })
   .then(res => {
     console.log("✅ Token verified:", res.data.user);
-    setuser(res.data.user); 
+    const userId = res.data.user.userId;
+    axios.get(`https://mychat-1-4ru5.onrender.com/api/${userId}`, {
+      withCredentials: true
+    })
+    .then(userRes => {
+      console.log("📦 Full user loaded:", userRes.data.user);
+      setuser(userRes.data.user);
+    })
+    .catch(err => {
+      console.error("❌ Failed to load full user:", err);
+    });
+
   })
   .catch(err => {
     console.error("❌ Verification failed:", err);
   });
 }, []);
+
+
+
+
+
+
 
 
 
