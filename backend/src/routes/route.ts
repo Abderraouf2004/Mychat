@@ -5,6 +5,7 @@ import messagerouter from "./message";
 import { deleteusers, users } from "../controls/users";
 import {  me, verifyToken } from "../controls/auth";
 import { deletemessages } from "../controls/message";
+import { deletechats } from "../controls/chat";
 
 const router=Router();
 
@@ -15,6 +16,7 @@ router.get('/users',users);
 router.get('/users/:id',me as RequestHandler);
 router.get('/deleteusers',deleteusers);
 router.get('/deletemessages',deletemessages);
+router.get('/deletechats',deletechats);
 router.get('/verify',verifyToken as RequestHandler);
 
 

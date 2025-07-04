@@ -57,3 +57,17 @@ export const getchatbyid=async(req:Request,res:Response)=>{
     res.status(500).json({ error: "Failed to get chat by id" });
     }
 }
+
+
+export const deletechats=async(req:Request,res:Response)=>{
+try {
+    const result=await prismaclient.chat.deleteMany()
+     res.status(200).json({
+      message: "All chats deleted successfully",
+      deletedCount: result.count,
+    });
+} catch (error) {
+        console.error("Error get all chats:", error);
+    res.status(500).json({ error: "Failed to get chats" });
+}
+}
