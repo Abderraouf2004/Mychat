@@ -123,6 +123,31 @@ export const verifyToken = (req: Request, res: Response) => {
   }
 };
 
+// export const me= (req:Request, res:Response) => {
+//   const token = req.cookies.token; // ou req.cookies.user si c’est ton nom
+//   if (!token) {
+//     return res.status(401).json({ error: 'No token' });
+//   }
+
+//   try {
+//     const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+//     res.json({ user: decoded.user }); // renvoie l'utilisateur décodé
+//   } catch (err) {
+//     res.status(401).json({ error: 'Invalid token' });
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 export const refreshAccessToken = (req: Request, res: Response) => {
