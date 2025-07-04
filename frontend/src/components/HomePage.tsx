@@ -145,40 +145,40 @@ useEffect(()=>{
 
 // // get chats
 
-  //   const getchats= async()=>{
-  //       if (!user?.id) return;
-  //    await axios.get(`https://mychat-1-4ru5.onrender.com/api/chat/${user.id}`)
-  //   .then((response) => {
-  //   console.log(response.data);
-  //   setchats(response.data)
-  // })
-  // .catch((error) => {
-  //   console.error('Erreur lors de la requête GET', error);
-  // });
-  //   }
+    const getchats= async()=>{
+        if (!user?.id) return;
+     await axios.get(`https://mychat-1-4ru5.onrender.com/api/chat/${user.id}`)
+    .then((response) => {
+    console.log(response.data);
+    setchats(response.data)
+  })
+  .catch((error) => {
+    console.error('Erreur lors de la requête GET', error);
+  });
+    }
 
 
 
 
 // get users
 
-//  const getusers= async()=>{
-//      await axios.get('https://mychat-1-4ru5.onrender.com/api/users')
-//     .then((response) => {
-//     console.log(response.data);
-//     setusers(response.data)
-//   })
-//   .catch((error) => {
-//     console.error('Erreur lors de la requête GET', error);
-//   });
-//     }
+ const getusers= async()=>{
+     await axios.get('https://mychat-1-4ru5.onrender.com/api/users')
+    .then((response) => {
+    console.log(response.data);
+    setusers(response.data)
+  })
+  .catch((error) => {
+    console.error('Erreur lors de la requête GET', error);
+  });
+    }
 
 
-//     useEffect(() => {
-//        getchats();
-//     getusers();
+    useEffect(() => {
+       getchats();
+    getusers();
   
-// }, []);
+}, []);
 
 
 
