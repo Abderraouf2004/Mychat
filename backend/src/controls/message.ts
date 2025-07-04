@@ -47,3 +47,15 @@ export const getMessagesByChat=async(req:Request,res:Response)=>{
     }
 }
 
+export const deletemessages=async(req:Request,res:Response)=>{
+try {
+    const result=await prismaclient.message.deleteMany()
+     res.status(200).json({
+      message: "All messagess deleted successfully",
+      deletedCount: result.count,
+    });
+} catch (error) {
+        console.error("Error get all messages:", error);
+    res.status(500).json({ error: "Failed to get messages" });
+}
+}
