@@ -110,6 +110,7 @@ export const signin=async(req:Request,res:Response,next:NextFunction)=>{
 
 export const verifyToken = (req: Request, res: Response) => {
   const token = req.cookies.token;
+
   if (!token) {
     return res.status(401).json({ authenticated: false });
   }
@@ -122,31 +123,15 @@ export const verifyToken = (req: Request, res: Response) => {
   }
 };
 
-
-
-export const me = async (req: Request, res: Response) => {
+export const me= async(req:Request, res:Response) => {
+  const {id}=req.params;
   try {
-    const rawUser = req.cookies.user;
-
-    if (!rawUser) {
-      return res.status(401).json({ error: "User cookie not found" });
-    }
-
-    const parsedUser = JSON.parse(rawUser); 
-    const user = await prismaclient.user.findUnique({
-      where: { id: parsedUser.id }
-    });
-
-    if (!user) {
-      return res.status(404).json({ error: "User not found in DB" });
-    }
-
-    res.json({ user });
+   const user = await prismaclient.user.findFirst({where:{id}})
+   res.send(user)
   } catch (err) {
-    res.status(500).json({ error: "Internal server error" });
+    res.status(401).json({ error: 'not found this user' });
   }
-};
-
+}
 
 
 
