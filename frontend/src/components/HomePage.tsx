@@ -46,7 +46,7 @@ axios.defaults.withCredentials = true;
 //     setUser(null);
 //   }
 // }, []);
-const [user] = useState<User | null>(User);
+const [user,setuser] = useState<User | null>(User);
 
 // useEffect(() => {
 //   const cookieUser = document.cookie
@@ -133,15 +133,29 @@ type message = {
   const [typechats,settypechats]=useState<string>('private');
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  useEffect(() => {
-  axios.get('https://mychat-1-4ru5.onrender.com/api/verify', { withCredentials: true })
-    .then(res => {
-      console.log("✅ Token verified:", res.data);
-    })
-    .catch(err => {
-      console.error("❌ Token NOT verified:", err);
-    });
+//   useEffect(() => {
+//   axios.get('https://mychat-1-4ru5.onrender.com/api/verify', { withCredentials: true })
+//     .then(res => {
+//       console.log("✅ Token verified:", res.data);
+//     })
+//     .catch(err => {
+//       console.error("❌ Token NOT verified:", err);
+//     });
+// }, []);
+
+useEffect(() => {
+  axios.get("https://mychat-1-4ru5.onrender.com/api/verify", {
+    withCredentials: true
+  })
+  .then(res => {
+    console.log("✅ Token verified:", res.data.user);
+    setuser(res.data.user); // أو setuserid...
+  })
+  .catch(err => {
+    console.error("❌ Verification failed:", err);
+  });
 }, []);
+
 
 
 useEffect(()=>{
