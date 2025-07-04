@@ -11,63 +11,21 @@ import Group from './Group';
 
 
 const HomePage = () => {
-  const getCookie = (name: string): string | null => {
-  const matches = document.cookie.match(new RegExp(
-    `(?:^|; )${name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1')}=([^;]*)`
-  ));
-  return matches ? decodeURIComponent(matches[1]) : null;
-};
+//   const getCookie = (name: string): string | null => {
+//   const matches = document.cookie.match(new RegExp(
+//     `(?:^|; )${name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1')}=([^;]*)`
+//   ));
+//   return matches ? decodeURIComponent(matches[1]) : null;
+// };
 axios.defaults.withCredentials = true;
 
 
 
-  const rawUser = getCookie('user');
-  const User = rawUser ? JSON.parse(rawUser) : null;
-  // const [user] = useState(User);
-  
-//  const [user, setUser] = useState<User | null>(User);
-// const [user, setUser] = useState<User | null>(null);
+  // const rawUser = getCookie('user');
+  // const User = rawUser ? JSON.parse(rawUser) : null;
 
-// useEffect(() => {
-//   const rawUser = document.cookie
-//     .split('; ')
-//     .find(row => row.startsWith('user='))
-//     ?.split('=')[1];
 
-//   if (rawUser) {
-//     try {
-//       const parsed = JSON.parse(decodeURIComponent(rawUser));
-//       setUser(parsed);
-//     } catch (err) {
-//       console.error('Erreur parsing cookie user:', err);
-//       setUser(null);
-//     }
-//   } else {
-//     setUser(null);
-//   }
-// }, []);
-const [user] = useState<User | null>(User);
 
-// useEffect(() => {
-//   const cookieUser = document.cookie
-//     .split('; ')
-//     .find(c => c.startsWith('user='));
-
-//   if (!cookieUser) {
-//     console.warn("Cookie user introuvable !");
-//     setUser(null);
-//     return;
-//   }
-
-//   try {
-//     const value = decodeURIComponent(cookieUser.split('=')[1]);
-//     const parsed = JSON.parse(value);
-//     setUser(parsed);
-//   } catch (err) {
-//     console.error("Erreur parsing cookie user:", err);
-//     setUser(null);
-//   }
-// }, []);
 
 
 
@@ -132,11 +90,30 @@ type message = {
   const messageEndRef = useRef<HTMLDivElement | null>(null);
   const [typechats,settypechats]=useState<string>('private');
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [user,setUser] = useState<User | null>(null);
+
+//   useEffect(() => {
+//   axios.get('https://mychat-1-4ru5.onrender.com/api/me', { withCredentials: true })
+//     .then(res => {
+//       console.log("User récupéré depuis le backend:", res.data.user);
+//       setUser(res.data.user); 
+//     })
+//     .catch(err => {
+//       console.error("Erreur récupération user:", err);
+//     });
+// }, []);
+
+
+
+
+
   
   useEffect(() => {
   axios.get('https://mychat-1-4ru5.onrender.com/api/verify', { withCredentials: true })
     .then(res => {
-      console.log("✅ Token verified:", res.data);
+      console.log("✅ Token verified:", res.data.user);
+       setUser(res.data.user); 
     })
     .catch(err => {
       console.error("❌ Token NOT verified:", err);
@@ -195,12 +172,6 @@ useEffect(()=>{
     console.error('Erreur lors de la requête GET', error);
   });
     }
-//    useEffect(() => {
-//   if (user) {
-//     getchats();
-//     getusers();
-//   }
-// }, [user]);
 
  getchats();
     getusers();
@@ -231,7 +202,6 @@ useEffect(() => {
 //   console.log("Cookie rawUser:", rawUser);
 //   console.log("User:", user);
 // }, []);
- console.log("Cookie rawUser:", rawUser);
   console.log("User:", user);
 
 if (!user) {
