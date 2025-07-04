@@ -154,20 +154,21 @@ export const refreshAccessToken = (req: Request, res: Response) => {
 
 
 
-// Add to your auth controller
-export const getCurrentUser = async (req: Request, res: Response) => {
+export const me =async (req:Request, res:Response) => {
+  const { id } = req.params;
   try {
-    const token = req.cookies.token;
-    if (!token) return res.status(401).json(null);
-
-    const decoded = jwt.verify(token, JWT_SECRET) as { userId: string };
     const user = await prismaclient.user.findUnique({
-      where: { id: decoded.userId },
-      select: { id: true, name: true, email: true, image: true }
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        image: true,
+      },
     });
-
-    res.json(user);
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.json({ user });
   } catch (err) {
-    res.status(401).json(null);
+    res.status(500).json({ message: "Server error", error: err });
   }
-};
+}
