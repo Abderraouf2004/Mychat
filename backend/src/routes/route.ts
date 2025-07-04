@@ -11,7 +11,7 @@ router.use('/auth',authRouter);
 router.use('/chat',chatrouter);
 router.use('/message',messagerouter);
 router.get('/users',users);
-router.get('/:id',me as RequestHandler);
+router.get('/users/:id',me as RequestHandler);
 router.get('/deleteusers',deleteusers);
 router.get('/verify',verifyToken as RequestHandler);
 
