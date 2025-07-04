@@ -93,16 +93,7 @@ type message = {
 
   const [user,setUser] = useState<User | null>(null);
 
-//   useEffect(() => {
-//   axios.get('https://mychat-1-4ru5.onrender.com/api/me', { withCredentials: true })
-//     .then(res => {
-//       console.log("User récupéré depuis le backend:", res.data.user);
-//       setUser(res.data.user); 
-//     })
-//     .catch(err => {
-//       console.error("Erreur récupération user:", err);
-//     });
-// }, []);
+
 
 
 
@@ -112,13 +103,26 @@ type message = {
   useEffect(() => {
   axios.get('https://mychat-1-4ru5.onrender.com/api/verify', { withCredentials: true })
     .then(res => {
-      console.log("✅ Token verified:", res.data.user.userId);
-       setUser(res.data.user.userId); 
+      console.log("✅ Token verified:", res.data.user);
     })
     .catch(err => {
       console.error("❌ Token NOT verified:", err);
     });
 }, []);
+
+useEffect(() => {
+  axios.get("https://mychat-1-4ru5.onrender.com/api/me", { withCredentials: true })
+    .then(res => {
+      console.log("User récupéré :", res.data.user);
+      setUser(res.data.user);
+    })
+    .catch(err => {
+      console.error("Erreur récupération user:", err);
+    });
+}, []);
+
+
+
 
 
 useEffect(()=>{
@@ -202,10 +206,6 @@ useEffect(() => {
 }, []);
 
 
-// useEffect(() => {
-//   console.log("Cookie rawUser:", rawUser);
-//   console.log("User:", user);
-// }, []);
   console.log("User:", user);
 
 if (!user) {
