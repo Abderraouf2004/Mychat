@@ -30,29 +30,25 @@ interface ChatsProps {
   typechats: string;
 }
 
+
+
 const Chats = ({ chats,  getmessages, typechats }: ChatsProps) => {
   const filteredChats = chats.filter((chat) =>
     typechats === 'group' ? chat.isGroup : !chat.isGroup
   );
+  console.log("chats:",chats)
+  console.log("filteredChats:",filteredChats)
 
   return (
     <div className="max-h-[80vh] overflow-y-auto px-2">
       <ul>
-        {filteredChats && filteredChats.map((chat) => {
-          const imageUrl = chat.image
-            ? `https://mychat-1-4ru5.onrender.com/uploads/${chat.image}`
-            : Chat;
-
+        {filteredChats.map((chat) => {
           return (
-            <li
-              key={chat.id}
-              className="shadow-md flex items-center w-11/12 cursor-pointer p-2 text-black rounded hover:bg-gray-100"
-              onClick={() =>
-                getmessages(chat.id, chat.name, chat.image ?? '')
-              }
+            <li key={chat.id} className="shadow-md flex items-center w-11/12 cursor-pointer p-2 text-black rounded hover:bg-gray-100"
+              onClick={() =>getmessages(chat.id, chat.name, chat.image ?? '') }
             >
               <img
-                src={imageUrl}
+                src={`https://mychat-1-4ru5.onrender.com/uploads/${chat.image}`}
                 className="w-14 h-14 rounded-full mr-3 object-cover"
                 alt={chat.name}
               />

@@ -228,7 +228,7 @@ useEffect(() => {
 if (!user) {
   return (
     <div className="flex items-center justify-center h-screen text-black text-xl">
-      Please log in to access the chat.
+      loeding..
     </div>
   );
 } 
