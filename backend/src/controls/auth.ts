@@ -110,7 +110,6 @@ export const signin=async(req:Request,res:Response,next:NextFunction)=>{
 
 export const verifyToken = (req: Request, res: Response) => {
   const token = req.cookies.token;
-
   if (!token) {
     return res.status(401).json({ authenticated: false });
   }
@@ -123,19 +122,31 @@ export const verifyToken = (req: Request, res: Response) => {
   }
 };
 
-// export const me= (req:Request, res:Response) => {
-//   const token = req.cookies.token; // ou req.cookies.user si c’est ton nom
-//   if (!token) {
-//     return res.status(401).json({ error: 'No token' });
-//   }
 
-//   try {
-//     const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-//     res.json({ user: decoded.user }); // renvoie l'utilisateur décodé
-//   } catch (err) {
-//     res.status(401).json({ error: 'Invalid token' });
-//   }
-// }
+
+export const me = async (req: Request, res: Response) => {
+  try {
+    const rawUser = req.cookies.user;
+
+    if (!rawUser) {
+      return res.status(401).json({ error: "User cookie not found" });
+    }
+
+    const parsedUser = JSON.parse(rawUser); 
+    const user = await prismaclient.user.findUnique({
+      where: { id: parsedUser.id }
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found in DB" });
+    }
+
+    res.json({ user });
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 
 
 
@@ -179,20 +190,4 @@ export const refreshAccessToken = (req: Request, res: Response) => {
 
 
 
-// Add to your auth controller
-export const getCurrentUser = async (req: Request, res: Response) => {
-  try {
-    const token = req.cookies.token;
-    if (!token) return res.status(401).json(null);
 
-    const decoded = jwt.verify(token, JWT_SECRET) as { userId: string };
-    const user = await prismaclient.user.findUnique({
-      where: { id: decoded.userId },
-      select: { id: true, name: true, email: true, image: true }
-    });
-
-    res.json(user);
-  } catch (err) {
-    res.status(401).json(null);
-  }
-};

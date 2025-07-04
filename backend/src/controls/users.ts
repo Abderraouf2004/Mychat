@@ -11,6 +11,9 @@ try {
 }
 }
 
+
+
+
 export const deleteusers=async(req:Request,res:Response)=>{
 try {
     const result=await prismaclient.user.deleteMany()
