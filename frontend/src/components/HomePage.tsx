@@ -106,6 +106,7 @@ type message = {
   axios.get('https://mychat-1-4ru5.onrender.com/api/verify', { withCredentials: true })
     .then(res => {
       console.log("✅ Token verified:", res.data.user);
+        setUser(res.data.user);
       setuserid(res.data.user.userId)
     })
     .catch(err => {
