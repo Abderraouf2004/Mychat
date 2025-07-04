@@ -4,6 +4,8 @@ import { prismaclient } from "../main";
 
 
 export const createchat=async(req:Request,res:Response)=>{
+  console.log("Body reçu :", req.body);
+
      const{isGroup,adminId,members,name,image}= req.body;
      try {
     const chat=await prismaclient.chat.create({
