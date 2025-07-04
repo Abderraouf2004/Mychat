@@ -3,7 +3,7 @@ import authRouter from "./auth";
 import chatrouter from "./chat";
 import messagerouter from "./message";
 import { deleteusers, users } from "../controls/users";
-import { e, verifyToken } from "../controls/auth";
+import {  verifyToken } from "../controls/auth";
 
 const router=Router();
 
