@@ -262,8 +262,6 @@ if (!user) {
 
   const createchat=async(memberid:string | string[],name:string | null,memberimage:string | null,isGroup:boolean)=>{
        try {
- 
-
           const Chatexist = isGroup ? chats.find(
                (chat) => chat.isGroup && chat.members.some((m) => m.userId === user.id) &&
                (Array.isArray(memberid)
