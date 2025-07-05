@@ -216,7 +216,7 @@ useEffect(() => {
     } catch (err) {
       console.error("Failed to refresh token", err);
     }
-  }, 15 * 60 * 1000);
+  }, 13  * 60 * 1000);
 
   return () => clearInterval(interval); 
 }, []);
