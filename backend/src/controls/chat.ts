@@ -61,7 +61,7 @@ export const getchatbyid=async(req:Request,res:Response)=>{
 
 export const deletechats=async(req:Request,res:Response)=>{
 try {
-    const result=await prismaclient.member.deleteMany()
+    const result=await prismaclient.chat.deleteMany()
      res.status(200).json({
       message: "All chats deleted successfully",
       deletedCount: result.count,
